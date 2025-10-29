@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOLOGRAM スタッフ用価格表</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chosen Palette: Warm Neutrals (Amber/Emerald/Sky) -->
+    <!-- Chosen Palette: Rose Pink -->
     <!-- Application Structure Plan: A filterable grid of cards. Users select a high-level category (All, Extensions, Perm/Brow, Hand Nail, Foot Nail, Other) via navigation buttons. This filters the main grid, which displays individual service cards. This structure separates Eyelash (with 2-tier pricing) from Nail (with single pricing) clearly. It's designed for staff to quickly find service details and pricing structures by category. -->
     <!-- Visualization & Content Choices: Report Info: Price list tables (Eyelash & Nail). Goal: Organize and present menu for staff. Viz: HTML Cards in a CSS Grid. Interaction: JS-based filtering via nav buttons. Justification: Cards are better UI for distinct service categories. Filters allow quick lookup. Logic in JS dynamically changes table structure (headers/columns) based on whether the card is 'nail' or 'eyelash', accommodating the different pricing models (single price vs. 2-tier price) in one unified interface. Method: Vanilla JS for filtering and conditional table rendering, Tailwind for layout/styling. No charts, SVG, or Mermaid used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -13,26 +13,29 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
         body {
             font-family: 'Noto Sans JP', sans-serif;
+            background-color: #fff1f2; /* bg-pink-50 */
         }
         .filter-btn {
             transition: all 0.3s ease;
         }
         .filter-btn.active {
-            background-color: #a16207;
+            background-color: #e11d48; /* bg-rose-600 */
             color: #ffffff;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .menu-card {
             transition: opacity 0.3s ease, transform 0.3s ease;
+            border-color: #ffe4e6; /* border-rose-100 */
+            box-shadow: 0 4px 6px -1px rgb(255 228 230 / 0.1), 0 2px 4px -2px rgb(255 228 230 / 0.1);
         }
     </style>
 </head>
-<body class="bg-amber-50 text-gray-800 antialiased">
+<body class="bg-pink-50 text-gray-800 antialiased">
 
     <div class="container mx-auto p-4 md:p-8 max-w-7xl">
 
         <header class="text-center mb-8 md:mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-amber-800 mb-2">HOLOGRAM</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-rose-800 mb-2">HOLOGRAM</h1>
             <p class="text-lg text-gray-600">スタッフ用 施術メニュー価格表</p>
         </header>
 
@@ -44,22 +47,22 @@
         </section>
 
         <nav class="flex justify-center flex-wrap gap-2 md:gap-4 mb-8">
-            <button class="filter-btn active text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="all">
+            <button class="filter-btn active text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="all">
                 すべて
             </button>
-            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="extensions">
+            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="extensions">
                 エクステ
             </button>
-            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="eye-other">
+            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="eye-other">
                 パーマ/眉毛
             </button>
-            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="nail-hand">
+            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="nail-hand">
                 ハンドネイル
             </button>
-            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="nail-foot">
+            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="nail-foot">
                 フットネイル
             </button>
-            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-amber-700 border border-amber-200 shadow-sm" data-filter="other-misc">
+            <button class="filter-btn text-sm md:text-base font-medium py-2 px-4 rounded-full bg-white text-rose-700 border border-rose-200 shadow-sm" data-filter="other-misc">
                 その他
             </button>
         </nav>
@@ -192,6 +195,16 @@
                 ]
             },
             {
+                category: "extensions",
+                name: "下まつげのみ",
+                revisit_rule: null,
+                type: "nail", // 単一価格カラムのテーブルレイアウトを流用
+                items: [
+                    { detail: "1本〜30本", time_no: null, time_with: null, price: "¥150 / 本" },
+                    { detail: "31本〜", time_no: null, time_with: null, price: "¥100 / 本" }
+                ]
+            },
+            {
                 category: "eye-other",
                 name: "まつ毛パーマ",
                 revisit_rule: 40,
@@ -255,6 +268,15 @@
                 ]
             },
             {
+                category: "eye-other",
+                name: "眉毛シェービング",
+                revisit_rule: null,
+                type: "nail", // 単一価格カラムのテーブルレイアウトを流用
+                items: [
+                    { detail: "シェービング", time_no: null, time_with: null, price: 1000 }
+                ]
+            },
+            {
                 category: "nail-hand",
                 name: "ハンドネイル",
                 revisit_rule: null,
@@ -310,20 +332,26 @@
                 if (price === null || price === undefined) {
                     return '—';
                 }
+                if (typeof price === 'string') {
+                    return price;
+                }
                 return `¥${price.toLocaleString()}`;
             };
 
             const createRuleBadge = (rule) => {
                 if (rule === 30) {
-                    return `<span class="absolute top-0 right-0 -mt-2 -mr-2 bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">30日以内再来 特価</span>`;
+                    return `<span class="absolute top-0 right-0 -mt-2 -mr-2 bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1 rounded-full">30日以内再来 特価</span>`;
                 }
                 if (rule === 40) {
-                    return `<span class="absolute top-0 right-0 -mt-2 -mr-2 bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">40日以内再来 特価</span>`;
+                    return `<span class="absolute top-0 right-0 -mt-2 -mr-2 bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full">40日以内再来 特価</span>`;
                 }
                 return '';
             };
             
             const createTimeCell = (item) => {
+                if (item.time_no === null || item.time_no === undefined) {
+                    return '—';
+                }
                 if (item.detail === "オフのみ") {
                     return `約${item.time_no}分`;
                 }
@@ -337,7 +365,7 @@
                 grid.innerHTML = '';
                 menuData.forEach(category => {
                     const card = document.createElement('div');
-                    card.className = 'menu-card bg-white p-5 md:p-6 rounded-xl shadow-lg relative border border-gray-100';
+                    card.className = 'menu-card bg-white p-5 md:p-6 rounded-xl shadow-lg relative border';
                     card.setAttribute('data-category', category.category);
 
                     let tableHeadHtml = '';
@@ -346,34 +374,34 @@
                     if (category.type === "nail") {
                         // --- ネイル用テーブル ---
                         tableHeadHtml = `
-                            <tr class="border-b-2 border-amber-100">
-                                <th class="pb-2 text-left text-xs text-amber-700 font-bold uppercase tracking-wider">メニュー</th>
-                                <th class="pb-2 px-2 text-left text-xs text-amber-700 font-bold uppercase tracking-wider">施術時間</th>
-                                <th class="pb-2 pl-2 text-right text-xs text-amber-700 font-bold uppercase tracking-wider">価格</th>
+                            <tr class="border-b-2 border-rose-100">
+                                <th class="pb-2 text-left text-xs text-rose-700 font-bold uppercase tracking-wider">メニュー</th>
+                                <th class="pb-2 px-2 text-left text-xs text-rose-700 font-bold uppercase tracking-wider">施術時間</th>
+                                <th class="pb-2 pl-2 text-right text-xs text-rose-700 font-bold uppercase tracking-wider">価格</th>
                             </tr>
                         `;
                         tableBodyHtml = category.items.map(item => `
                             <tr class="border-b border-gray-100 last:border-b-0">
                                 <td class="py-3 pr-2 text-sm md:text-base font-medium text-gray-800">${item.detail || category.name}</td>
                                 <td class="py-3 px-2 text-xs md:text-sm text-gray-500 whitespace-nowrap">${createTimeCell(item)}</td>
-                                <td class="py-3 pl-2 text-sm md:text-base font-bold text-amber-700 whitespace-nowrap text-right">${formatPrice(item.price)}</td>
+                                <td class="py-3 pl-2 text-sm md:text-base font-bold text-rose-700 whitespace-nowrap text-right">${formatPrice(item.price)}</td>
                             </tr>
                         `).join('');
                     } else {
                         // --- アイラッシュ用テーブル ---
                         tableHeadHtml = `
-                            <tr class="border-b-2 border-amber-100">
-                                <th class="pb-2 text-left text-xs text-amber-700 font-bold uppercase tracking-wider">メニュー</th>
-                                <th class="pb-2 px-2 text-left text-xs text-amber-700 font-bold uppercase tracking-wider">施術時間</th>
-                                <th class="pb-2 px-2 text-right text-xs text-amber-700 font-bold uppercase tracking-wider">初回・特別再来</th>
-                                <th class="pb-2 pl-2 text-right text-xs text-amber-700 font-bold uppercase tracking-wider">通常再来</th>
+                            <tr class="border-b-2 border-rose-100">
+                                <th class="pb-2 text-left text-xs text-rose-700 font-bold uppercase tracking-wider">メニュー</th>
+                                <th class="pb-2 px-2 text-left text-xs text-rose-700 font-bold uppercase tracking-wider">施術時間</th>
+                                <th class="pb-2 px-2 text-right text-xs text-rose-700 font-bold uppercase tracking-wider">初回・特別再来</th>
+                                <th class="pb-2 pl-2 text-right text-xs text-rose-700 font-bold uppercase tracking-wider">通常再来</th>
                             </tr>
                         `;
                         tableBodyHtml = category.items.map(item => `
                             <tr class="border-b border-gray-100 last:border-b-0">
                                 <td class="py-3 pr-2 text-sm md:text-base font-medium text-gray-800">${item.detail || category.name}</td>
                                 <td class="py-3 px-2 text-xs md:text-sm text-gray-500 whitespace-nowrap">${createTimeCell(item)}</td>
-                                <td class="py-3 px-2 text-sm md:text-base font-bold text-amber-700 whitespace-nowrap text-right">${formatPrice(item.price_first)}</td>
+                                <td class="py-3 px-2 text-sm md:text-base font-bold text-rose-700 whitespace-nowrap text-right">${formatPrice(item.price_first)}</td>
                                 <td class="py-3 pl-2 text-sm md:text-base text-gray-600 whitespace-nowrap text-right">${formatPrice(item.price_revisit)}</td>
                             </tr>
                         `).join('');
@@ -382,7 +410,7 @@
 
                     card.innerHTML = `
                         ${createRuleBadge(category.revisit_rule)}
-                        <h2 class="text-xl md:text-2xl font-semibold text-amber-800 mb-4">${category.name}</h2>
+                        <h2 class="text-xl md:text-2xl font-semibold text-rose-800 mb-4">${category.name}</h2>
                         <div class="overflow-x-auto">
                             <table class="w-full min-w-[300px]">
                                 <thead>
