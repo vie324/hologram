@@ -6,8 +6,8 @@
     <title>HOLOGRAM スタッフ用価格表</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chosen Palette: Elegant Rose & Sakura -->
-    <!-- Application Structure Plan: A single-page dashboard for staff. Navigation buttons filter the service cards. A dedicated "Operations & Rules" section is placed at the top or bottom for quick reference of complex cycle rules. The structure prioritizes clarity for staff decision-making (e.g., which price to apply based on history). Method: Vanilla JS filtering, Tailwind responsive grid. -->
-    <!-- Visualization & Content Choices: Report Info: Complex salon pricing and operational rules. Goal: Make rules easily searchable and readable for staff. Viz: Cards for services, structured lists for rules. Interaction: Category filtering. Justification: Categorizing services prevents visual clutter. Rules are grouped by logic (Cycle, Mix, First-time) to aid staff in troubleshooting customer inquiries. Method: CSS-based cards, JS state for filtering. NO SVG/Mermaid. -->
+    <!-- Application Structure Plan: A comprehensive internal dashboard for HOLOGRAM staff. Restored 3D Volume Lash and Audrey Matte Lash, ensuring all historical data from the spreadsheet is preserved. Includes refined color mixing rules with Point Color pricing. Designed to prevent pricing errors by consolidating complex operational logic (cycle rules, cross-service rules) into a dedicated section. -->
+    <!-- Visualization & Content Choices: Report Info: Full service menu including Eyelash and Nail with mixed pricing models. Goal: Accessibility and accuracy for staff. Viz: Categorized cards with data-driven tables. Interaction: Category filtering for fast lookup. Justification: Logical grouping of extensions vs. other services aids in rapid consultation during customer service. Method: Vanilla JS for dynamic content rendering. NO SVG/Mermaid. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
@@ -31,7 +31,7 @@
             background: linear-gradient(135deg, #fff5f5 0%, #fff1f2 100%);
             border-left: 4px solid #fda4af;
         }
-        /* Custom scrollbar for desktop */
+        /* Scrollbar customization */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fff1f2; }
         ::-webkit-scrollbar-thumb { background: #fecdd3; border-radius: 4px; }
@@ -43,7 +43,7 @@
 
         <header class="text-center mb-10">
             <h1 class="text-3xl md:text-5xl font-extrabold text-rose-800 tracking-widest mb-2">HOLOGRAM</h1>
-            <p class="text-rose-600 font-medium">STAFF ONLY - OFFICIAL PRICE LIST</p>
+            <p class="text-rose-600 font-medium tracking-tight">STAFF ONLY - OFFICIAL PRICE LIST</p>
             <div class="h-1 w-24 bg-rose-300 mx-auto mt-4 rounded-full"></div>
         </header>
 
@@ -59,18 +59,18 @@
                         <li>● <b>セットメニュー：</b> どちらか一方が40日以内であれば「40日以内価格」を適用。</li>
                         <li>● <b>アイメニュー価格算出：</b> 直近来店がネイルの場合でも、アイメニューに関しては「アイメニューの前回日」から周期を計算。</li>
                         <li>● <b>初めての別メニュー：</b> ネイルのみの方が初のアイメニューなら「新規価格」を適用（逆も然り）。</li>
-                        <li>● <b>メニュー転向特典：</b> パーマを40日以内で継続中の方が初めてエクステをする場合、40日以内の来店なら「30日以内クーポン価格」で案内可能（逆も然り）。</li>
+                        <li>● <b>メニュー転向特典：</b> パーマ（40日以内）継続中の方が初エクステの場合、40日以内の来店で「30日以内クーポン価格」にて案内可。</li>
                     </ul>
                 </div>
                 <div class="rule-box p-4 rounded-r-lg shadow-sm">
                     <h3 class="font-bold text-rose-700 mb-2 border-b border-rose-200 pb-1">特殊技術・ミックス</h3>
                     <ul class="text-sm space-y-2 text-gray-700">
-                        <li>● <b>&healthy 160本以上：</b> 【シークレット】時間・価格不変で対応可能（※技術者が対応可能な場合に限る）。</li>
                         <li>● <b>カラー/ブラックミックス：</b> 
-                            <br>&nbsp;・黒60本以下：カラー料金のみで対応。
-                            <br>&nbsp;・黒80本以上：それぞれの価格を合算。</li>
-                        <li>● <b>アイブロウシェービング：</b> 予約画面にはないが、来店時の追加やリピーターの電話単品予約（¥1,000）は対応可能。</li>
-                        <li>● <b>ネイル共通：</b> 周期割引なし。いつ来ても同一価格。他店オフは一律有料。</li>
+                            <br>&nbsp;・黒60本以下：<b>ポイントカラー(¥2,200)</b>をベースに、カラー料金でミックス対応可能。
+                            <br>&nbsp;・黒80本以上：それぞれの価格の合算。</li>
+                        <li>● <b>&healthy 160本以上：</b> 【シークレット】時間・価格不変で対応可能（※技術者が対応可能な場合に限る）。</li>
+                        <li>● <b>アイブロウシェービング：</b> 予約画面にはないが、来店時追加やリピーターの電話単品予約（¥1,000）は対応可能。</li>
+                        <li>● <b>ネイル共通：</b> 周期割引なし。いつ来ても同一価格。他店オフは有料。</li>
                     </ul>
                 </div>
             </div>
@@ -88,12 +88,12 @@
 
         <!-- メニューグリッド -->
         <main id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- JSで動的に生成 -->
+            <!-- JavaScript will populate this -->
         </main>
 
         <footer class="mt-16 pt-8 border-t border-rose-200 text-center text-gray-500 text-xs">
             <p class="mb-2">© HOLOGRAM Internal Management System</p>
-            <p>価格や運用ルールに変更がある場合は管理者に確認してください。</p>
+            <p>最終更新: 2025.12.26 - ボリュームラッシュ復元 & カラーミックス詳細更新</p>
         </footer>
 
     </div>
@@ -118,10 +118,42 @@
             },
             {
                 category: "extensions",
+                name: "オードリーマットラッシュ",
+                revisit_rule: 30,
+                type: "eyelash",
+                items: [
+                    { detail: "リペア 60本以下", time: "50/60分", price_first: 4800, price_revisit: null },
+                    { detail: "80本", time: "50/60分", price_first: 5300, price_revisit: 5800 },
+                    { detail: "100本", time: "50/60分", price_first: 6300, price_revisit: 6800 },
+                    { detail: "120本", time: "60/70分", price_first: 6800, price_revisit: 7300 },
+                    { detail: "140本", time: "80/90分", price_first: 7800, price_revisit: 8300 },
+                    { detail: "160本", time: "80/90分", price_first: 8300, price_revisit: 8800 },
+                    { detail: "180本", time: "100/110分", price_first: 8800, price_revisit: 9300 },
+                    { detail: "つけ放題", time: "110/120分", price_first: 9800, price_revisit: 10300 },
+                ]
+            },
+            {
+                category: "extensions",
+                name: "3Dボリュームラッシュ",
+                revisit_rule: 30,
+                type: "eyelash",
+                items: [
+                    { detail: "リペア 60本以下", time: "50/60分", price_first: 4800, price_revisit: null },
+                    { detail: "80本", time: "50/60分", price_first: 5300, price_revisit: 5800 },
+                    { detail: "100本", time: "80/90分", price_first: 6300, price_revisit: 6800 },
+                    { detail: "120本", time: "80/90分", price_first: 6800, price_revisit: 7300 },
+                    { detail: "140本", time: "95/105分", price_first: 7800, price_revisit: 8300 },
+                    { detail: "160本", time: "110/120分", price_first: 8300, price_revisit: 8800 },
+                    { detail: "180本", time: "115/125分", price_first: 8800, price_revisit: 9300 },
+                    { detail: "つけ放題", time: "115/125分", price_first: 9800, price_revisit: 10300 },
+                ]
+            },
+            {
+                category: "extensions",
                 name: "カラーエクステ",
                 revisit_rule: 30,
                 type: "eyelash",
-                note: "黒60本以下込: カラー料金 / 黒80本以上混: 合算",
+                note: "黒60本以下ミックス: カラー料金 (ポイントカラー ¥2,200含む) / 黒80本以上混: 合算",
                 items: [
                     { detail: "リペア 60本以下", time: "50/60分", price_first: 5300, price_revisit: null },
                     { detail: "80本", time: "50/60分", price_first: 5800, price_revisit: 6300 },
@@ -169,11 +201,10 @@
                 name: "&healthy",
                 revisit_rule: 40,
                 type: "eyelash",
-                note: "160本以上: シークレットメニュー（時間・価格不変で対応可）",
+                note: "160本以上: シークレットメニュー (時間・価格不変で対応可能)",
                 items: [
                     { detail: "100本", time: "95/105分", price_first: 10800, price_revisit: 11800 },
                     { detail: "120本", time: "110/120分", price_first: 11800, price_revisit: 12800 },
-                    { detail: "140本", time: "110/120分", price_first: 12800, price_revisit: 13800 },
                 ]
             },
             {
@@ -224,9 +255,10 @@
                 revisit_rule: null,
                 type: "single",
                 items: [
-                    { detail: "下まつげ 1〜30本", time: "—", price: "¥150 / 本" },
-                    { detail: "下まつげ 31本〜", time: "—", price: "¥100 / 本" },
-                    { detail: "眉毛シェービング", time: "—", price: 1000, note: "単品予約・当日追加OK" },
+                    { detail: "下まつげ 1〜30本", price: "¥150 / 本" },
+                    { detail: "下まつげ 31本〜", price: "¥100 / 本" },
+                    { detail: "眉毛シェービング", price: 1000, note: "単品予約・当日追加対応可能" },
+                    { detail: "ポイントカラー", price: 2200, note: "60本以下ミックス時のカラー加算" }
                 ]
             },
             {
@@ -235,8 +267,8 @@
                 revisit_rule: null,
                 type: "single",
                 items: [
-                    { detail: "上下エクステ オフのみ", time: "—", price: 5000 },
-                    { detail: "上施術+下オフのみ", time: "—", price: "+¥1,800" },
+                    { detail: "上下エクステ オフのみ", price: 5000 },
+                    { detail: "上施術+下オフのみ", price: "+¥1,800" },
                     { detail: "アイ オフのみ", time: "30分", price: 3300 },
                     { detail: "ネイル オフのみ", time: "30分", price: 3300 },
                 ]
@@ -247,10 +279,10 @@
             const grid = document.getElementById('menu-grid');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            const formatPrice = (price) => {
-                if (price === null || price === undefined) return '—';
-                if (typeof price === 'string') return price;
-                return `¥${price.toLocaleString()}`;
+            const formatPrice = (p) => {
+                if (p === null || p === undefined) return '—';
+                if (typeof p === 'string') return p;
+                return `¥${p.toLocaleString()}`;
             };
 
             const renderMenu = () => {
@@ -260,10 +292,9 @@
                     card.className = 'menu-card bg-white p-5 rounded-2xl shadow-sm border hover:shadow-md relative group';
                     card.setAttribute('data-category', category.category);
 
-                    // 周期バッジ
                     let badge = '';
-                    if (category.revisit_rule === 30) badge = `<span class="absolute -top-2 -right-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg z-10">30日以内 特価</span>`;
-                    else if (category.revisit_rule === 40) badge = `<span class="absolute -top-2 -right-2 bg-pink-400 text-white text-[10px] font-bold px-2 py-1 rounded-lg z-10">40日以内 特価</span>`;
+                    if (category.revisit_rule === 30) badge = `<span class="absolute -top-2 -right-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg z-10 shadow-sm">30日以内 特価</span>`;
+                    else if (category.revisit_rule === 40) badge = `<span class="absolute -top-2 -right-2 bg-pink-400 text-white text-[10px] font-bold px-2 py-1 rounded-lg z-10 shadow-sm">40日以内 特価</span>`;
 
                     let tableRows = '';
                     if (category.type === 'eyelash') {
@@ -276,7 +307,7 @@
                             <tbody class="divide-y divide-rose-50">
                                 ${category.items.map(i => `
                                     <tr>
-                                        <td class="py-2 text-xs font-medium">${i.detail}<br><span class="text-[9px] text-gray-400">${i.time}</span></td>
+                                        <td class="py-2 text-xs font-medium">${i.detail}<br><span class="text-[9px] text-gray-400 font-normal">${i.time || ''}</span></td>
                                         <td class="text-right text-xs font-bold text-rose-600">${formatPrice(i.price_first)}</td>
                                         <td class="text-right text-xs text-gray-500">${formatPrice(i.price_revisit)}</td>
                                     </tr>
@@ -292,7 +323,7 @@
                             <tbody class="divide-y divide-rose-50">
                                 ${category.items.map(i => `
                                     <tr>
-                                        <td class="py-2 text-xs font-medium">${i.detail} ${i.time !== '—' ? `<br><span class="text-[9px] text-gray-400">${i.time}</span>` : ''}</td>
+                                        <td class="py-2 text-xs font-medium">${i.detail} ${i.time && i.time !== '—' ? `<br><span class="text-[9px] text-gray-400 font-normal">${i.time}</span>` : ''} ${i.note ? `<br><span class="text-[9px] text-rose-400 italic font-normal">${i.note}</span>` : ''}</td>
                                         <td class="text-right text-xs font-bold text-rose-600">${formatPrice(i.price)}</td>
                                     </tr>
                                 `).join('')}
